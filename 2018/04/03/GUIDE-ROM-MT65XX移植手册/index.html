@@ -1,0 +1,540 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+
+    <title>[GUIDE|ROM]MT65XX移植手册 | 相约易卓，动手创造</title>
+    <meta name="author" content="装机狂魔">
+    
+    <meta name="description" content="易卓工作室的官方博客">
+    
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:title" content="[GUIDE|ROM]MT65XX移植手册"/>
+    <meta property="og:site_name" content="易卓工作室"/>
+
+    
+    <meta property="og:image" content=""/>
+    
+
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="alternate" href="/atom.xml" title="易卓工作室" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/lib/materialize.min.css">
+    <link rel="stylesheet" href="/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+    
+        <link rel="stylesheet" href="/css/lib/prettify-tomorrow-night-eighties.css" type="text/css">
+    
+    <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+    <img src="/weixin_favicon.png" style="position: absolute; left: -9999px; opacity: 0; filter: alpha(opacity=0);">
+
+    <nav class="indigo">
+    <div class="nav-wrapper">
+        <a href="#" data-activates="main-menu" class="button-collapse">
+            <i class="fa fa-navicon"></i>
+        </a>
+        <div class="">
+            <a href="/" class="brand-logo hide-on-med-and-down">易卓工作室</a>
+            <ul class="right hide-on-med-and-down">
+                
+                    <li>
+                        <a class="menu-home " href="/" >
+                            <i class="fa fa-home "></i>
+                            
+                            首页
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-archive " href="/archives" >
+                            <i class="fa fa-archive "></i>
+                            
+                            归档
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                            <i class="fa fa-bookmark "></i>
+                            
+                            分类
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-about " href="/about" >
+                            <i class="fa fa-user "></i>
+                            
+                            关于
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a class="menu-search modal-trigger " href="#search" >
+                            <i class="fa fa-search "></i>
+                            
+                            搜索
+                        </a>
+                    </li>
+                
+            </ul>
+            <div>
+    <ul class="side-nav indigo darken-1" id="main-menu">
+        
+
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-home " href="/" >
+                    <i class="fa fa-home "></i>
+                    
+                    首页
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-archive " href="/archives" >
+                    <i class="fa fa-archive "></i>
+                    
+                    归档
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-category category-menu" href="javascript:;" data-activates="category-menu" >
+                    <i class="fa fa-bookmark "></i>
+                    
+                    分类
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-about " href="/about" >
+                    <i class="fa fa-user "></i>
+                    
+                    关于
+                </a>
+            </li>
+        
+            <li class="no-padding">
+                <a class="waves-effect menu-search modal-trigger " href="#search" >
+                    <i class="fa fa-search "></i>
+                    
+                    搜索
+                </a>
+            </li>
+        
+    </ul>
+
+    <ul class="side-nav indigo darken-1" id="category-menu">
+    
+
+            
+
+    </ul>
+</div>
+
+        </div>
+    </div>
+</nav>
+
+<div id="search" class="modal search-modal">
+    <div class="row">
+        <div class="input-field col s12">
+              <input id="search-input" type="text">
+              <label for="search-input">搜索</label>
+        </div>
+
+    </div>
+    <div id="search-result" class="search-result col s12">
+
+    </div>
+</div>
+
+
+    <main>
+        <div class="container main-container">
+    <nav class="page-nav hide-on-small-only">
+    <div class="nav-wrapper indigo">
+        <span class="breadcrumb">当前位置（分类目录）</span>
+        
+            
+
+        
+
+        
+    </div>
+</nav>
+
+<article>
+    <div class="card">
+        <div class="card-content">
+            
+
+            <div class="article-title">
+                
+    
+        <h1>[GUIDE|ROM]MT65XX移植手册</h1>
+    
+
+
+            </div>
+            <time class="pink-link-context" datetime="2018-04-03T13:57:58.000Z"><a href="/2018/04/03/GUIDE-ROM-MT65XX移植手册/">2018-04-03</a></time>
+
+            <span id="busuanzi_container_page_pv" class="read-times-container">
+    <i class="fa fa-eye"></i>
+    <span id="busuanzi_value_page_pv"></span>
+</span>
+
+            
+
+            <div class="toc pink-link-context hide-on-med-and-down">
+    <ol class="section table-of-contents"><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#前言："><span class="section table-of-contents-text">前言：</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#适用于："><span class="section table-of-contents-text">适用于：</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#必备条件"><span class="section table-of-contents-text">必备条件:</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#Q-amp-A"><span class="section table-of-contents-text">Q&amp;A:</span></a></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#第一章-：移植ROM"><span class="section table-of-contents-text">第一章:：移植ROM</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-1-MT65XX同平台移植"><span class="section table-of-contents-text">1.1 MT65XX同平台移植</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-1-1-替换文件与文件夹"><span class="section table-of-contents-text">1.1.1 替换文件与文件夹</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#1-2-MT65XX跨平台移植"><span class="section table-of-contents-text">1.2 MT65XX跨平台移植</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-2-1-替换文件与文件夹"><span class="section table-of-contents-text">1.2.1 替换文件与文件夹</span></a></li><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#1-2-2-移植Boot"><span class="section table-of-contents-text">1.2.2 移植Boot:</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#第二章-修改build-prop中的一些内容"><span class="section table-of-contents-text">第二章:修改build.prop中的一些内容</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-1-修改机型"><span class="section table-of-contents-text">2.1 修改机型</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-2-修改语言与时区"><span class="section table-of-contents-text">2.2 修改语言与时区</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#2-3-修改ROM的DPI"><span class="section table-of-contents-text">2.3 修改ROM的DPI</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-3"><a class="section table-of-contents-link" href="#附-各种常见分辨率所对应的DPI"><span class="section table-of-contents-text">附:各种常见分辨率所对应的DPI</span></a></li></ol></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#第三章-修改刷机脚本中的内容"><span class="section table-of-contents-text">第三章:修改刷机脚本中的内容</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#3-1-去掉机型验证，如果脚本中不存在机型验证的内容就跳过此步骤"><span class="section table-of-contents-text">3.1 去掉机型验证，如果脚本中不存在机型验证的内容就跳过此步骤</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#第四章-修复一些BUG"><span class="section table-of-contents-text">第四章:修复一些BUG</span></a><ol class="section table-of-contents-child"><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-1-通讯录fc"><span class="section table-of-contents-text">4.1 通讯录fc</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-2-卡第一屏"><span class="section table-of-contents-text">4.2 卡第一屏</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-3-照相机拍不了照或者拍照卡死或重启"><span class="section table-of-contents-text">4.3 照相机拍不了照或者拍照卡死或重启</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-4-通话时对方听不到我方声音"><span class="section table-of-contents-text">4.4 通话时对方听不到我方声音</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-5-手机要求激活"><span class="section table-of-contents-text">4.5 手机要求激活</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-6-手机出现漫游标志"><span class="section table-of-contents-text">4.6 手机出现漫游标志</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-7-不显示开机动画"><span class="section table-of-contents-text">4.7 不显示开机动画</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-8-彩信不可用"><span class="section table-of-contents-text">4.8 彩信不可用</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-9-通话声音或者音乐无声音等BUG"><span class="section table-of-contents-text">4.9 通话声音或者音乐无声音等BUG</span></a></li><li class="section table-of-contents-item section table-of-contents-level-2"><a class="section table-of-contents-link" href="#4-10-移植成功触屏无法使用"><span class="section table-of-contents-text">4.10 移植成功触屏无法使用</span></a></li></ol></li><li class="section table-of-contents-item section table-of-contents-level-1"><a class="section table-of-contents-link" href="#尾声…"><span class="section table-of-contents-text">尾声…</span></a></li></ol>
+</div>
+
+
+            <div class="entry pink-link-context">
+                <h1 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h1><p>你好朋友,我们都知道有很多基于开源的Android的ROM。<br>但是可能并不适用于您的设备。<br>现在，本指南将帮助您学会为您钟爱的设备移植这些原本不适用于您的设备的ROM</p>
+<h2 id="适用于："><a href="#适用于：" class="headerlink" title="适用于："></a>适用于：</h2><p>1.MT65XX同平台移植（包括但不限于MT6582机型相互移植）<br>2.MT65XX跨平台移植（包括但不限于MT6582机型移植MT6592机型）<br>3.移植后一些BUG的修复<br>4.同安卓版本或者跨安卓版本移植</p>
+<h1 id="必备条件"><a href="#必备条件" class="headerlink" title="必备条件:"></a>必备条件:</h1><p>用于制作脚本的电脑或者手机<br>MT管理器（推荐）<br>Notepad++编辑软件安装程序文件（手机可以使用MT管理器实现）<br>设备与CWM / TWRP Recovery等测试您移植的ROM<br>7z或WinRAR或任何其他使zip压缩工具（手机可以使用MT管理器实现）<br>坚持下去的决心<br>创造性思维和使用计算机或者手机的一些基本知识</p>
+<p>笔者:贴吧ID-装机狂魔<br>欢迎加入玩机交流群:230667346</p>
+<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A:"></a>Q&amp;A:</h1><p>Q:指南中所提到的文件来自哪里？<br>A:来自于您设备的官方ROM</p>
+<p>Q:我的官方ROM里缺少指南中所提到的文件怎么办？<br>A:直接忽略掉它就行</p>
+<p>Q:我可不可以使用一键移植Boot？<br>A:可以，但是不推荐，因为这可能会导致无法启动或者产生致命BUG</p>
+<p>Q:指南中所提到的替换是不是直接覆盖对应文件夹或者文件？<br>A:请删除后再复制！</p>
+<h1 id="第一章-：移植ROM"><a href="#第一章-：移植ROM" class="headerlink" title="第一章:：移植ROM"></a>第一章:：移植ROM</h1><h2 id="1-1-MT65XX同平台移植"><a href="#1-1-MT65XX同平台移植" class="headerlink" title="1.1 MT65XX同平台移植"></a>1.1 MT65XX同平台移植</h2><h3 id="1-1-1-替换文件与文件夹"><a href="#1-1-1-替换文件与文件夹" class="headerlink" title="1.1.1 替换文件与文件夹"></a>1.1.1 替换文件与文件夹</h3><p>需要替换的文件夹:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-etc:</span><br><span class="line">/system/etc/buletooth</span><br><span class="line">/system/etc/firmeware</span><br><span class="line">/system/etc/mddb</span><br><span class="line">/system/etc/wifi</span><br><span class="line">-lib:</span><br><span class="line">/system/lib/hw</span><br><span class="line">-usr:</span><br><span class="line">/system/usr/keychars</span><br><span class="line">/system/usr/keylayout</span><br><span class="line">-vendor:</span><br><span class="line">/system/usr/lib</span><br></pre></td></tr></table></figure></p>
+<p>需要替换的文件:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-lib:</span><br><span class="line">/system/lib/libaudio.primary.default.so</span><br><span class="line">/system/lib/libcameracustom.so</span><br></pre></td></tr></table></figure></p>
+<p>1.1.2 移植Boot:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">利用互联网上的搜索引擎，你会学习到许多有用的知识</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-2-MT65XX跨平台移植"><a href="#1-2-MT65XX跨平台移植" class="headerlink" title="1.2 MT65XX跨平台移植"></a>1.2 MT65XX跨平台移植</h2><h3 id="1-2-1-替换文件与文件夹"><a href="#1-2-1-替换文件与文件夹" class="headerlink" title="1.2.1 替换文件与文件夹"></a>1.2.1 替换文件与文件夹</h3><p>需要替换的文件夹:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">-etc:</span><br><span class="line">/system/etc/.tp</span><br><span class="line">/system/etc/firmware</span><br><span class="line">/system/etc/permission</span><br><span class="line">-lib:</span><br><span class="line">/system/lib/hw</span><br><span class="line">/system/lib/soundfx</span><br><span class="line">-usr:</span><br><span class="line">/system/usr/keychars</span><br><span class="line">/system/usr/keylayuot</span><br><span class="line">-vendor:</span><br><span class="line">/system/vendor/lib</span><br></pre></td></tr></table></figure></p>
+<p>需要替换的文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">-bin:</span><br><span class="line">/system/bin/ipod</span><br><span class="line">/system/bin/mtkbt</span><br><span class="line">-etc:</span><br><span class="line">/system/etc/agps_profiles_conf.xml</span><br><span class="line">-lib:</span><br><span class="line">/system/lib/lib3a.so</span><br><span class="line">/system/lib/libaudio.primary.default.so</span><br><span class="line">/system/lib/libaudioflinger.so</span><br><span class="line">/system/lib/libbluetooth_jni.so</span><br><span class="line">/system/lib/libbluetooth_mtk.so</span><br><span class="line">/system/lib/libcam.camadapter.so</span><br><span class="line">/system/lib/libcam.campipe.so</span><br><span class="line">/system/lib/libcam.camshot.so</span><br><span class="line">/system/lib/libcam.client.so</span><br><span class="line">/system/lib/libcam.device1.so</span><br><span class="line">/system/lib/libcam.exif.so</span><br><span class="line">/system/lib/libcam.paramsmgr.so</span><br><span class="line">/system/lib/libcam.utils.so</span><br><span class="line">/system/lib/libcamalgo.so</span><br><span class="line">/system/lib/libcamdrv.so</span><br><span class="line">/system/lib/libcamera_client.so</span><br><span class="line">/system/lib/libcameracustom.so</span><br><span class="line">/system/lib/libcustom_nvram.so</span><br><span class="line">/system/lib/libdpframework.so</span><br><span class="line">/system/lib/libfeatureio.so</span><br><span class="line">/system/lib/libimageio.so</span><br><span class="line">/system/lib/libimageio_plat_drv.so</span><br><span class="line">/system/lib/libjpeg.so</span><br><span class="line">/system/lib/libJpgDecPipe.so</span><br><span class="line">/system/lib/libJpgEncPipe.so</span><br><span class="line">/system/lib/libMali.so</span><br><span class="line">/system/lib/libmnl.so</span><br><span class="line">/system/lib/libmtkxxx(所有以libmtk开头的so)</span><br><span class="line">/system/lib/libnbaio.so</span><br><span class="line">/system/lib/libsensorservice.so</span><br><span class="line">/system/lib/libshowlogo.so</span><br><span class="line">/system/lib/libvcodec_oal.so</span><br><span class="line">/system/lib/libvcodec_utility.so</span><br><span class="line">/system/lib/libvcodecdrv.so</span><br></pre></td></tr></table></figure></p>
+<h3 id="1-2-2-移植Boot"><a href="#1-2-2-移植Boot" class="headerlink" title="1.2.2 移植Boot:"></a>1.2.2 移植Boot:</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">参考同平台</span><br></pre></td></tr></table></figure>
+<h1 id="第二章-修改build-prop中的一些内容"><a href="#第二章-修改build-prop中的一些内容" class="headerlink" title="第二章:修改build.prop中的一些内容"></a>第二章:修改build.prop中的一些内容</h1><p>build文件的位置:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/system/build.prop</span><br></pre></td></tr></table></figure></p>
+<p>请保持build.prop文件的编码为UTF-8</p>
+<p>本步骤可以忽略，但是您的ROM可能会出现一下状况<br>不会显示正确的品牌与机型<br>DPI可能会出现问题<br>语言和时区可能会不与您所在的地区相符</p>
+<p>注:您可以参考您官方ROM的build.prop中的内容进行修改</p>
+<h2 id="2-1-修改机型"><a href="#2-1-修改机型" class="headerlink" title="2.1 修改机型"></a>2.1 修改机型</h2><p>在您的build.prop找到以下字段，它们会在比较靠前的位置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ro.product.model=</span><br><span class="line">ro.product.brand=</span><br><span class="line">ro.product.name=</span><br><span class="line">ro.product.device=</span><br><span class="line">ro.product.board=</span><br><span class="line">ro.product.manufacturer=</span><br><span class="line">ro.build.product=</span><br></pre></td></tr></table></figure></p>
+<p>按下面所展示的内容进行修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ro.product.model=品牌+机型</span><br><span class="line">ro.product.brand=品牌</span><br><span class="line">ro.product.name=机型</span><br><span class="line">ro.product.device=机型</span><br><span class="line">ro.product.board=机型</span><br><span class="line">ro.product.manufacturer=品牌（使用大写字母）</span><br><span class="line">ro.build.product=机型</span><br></pre></td></tr></table></figure></p>
+<p>就像这样<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ro.product.model=Lenovo A3800<span class="_">-d</span></span><br><span class="line">ro.product.brand=Lenovo</span><br><span class="line">ro.product.name=A3800<span class="_">-d</span></span><br><span class="line">ro.product.device=A3800<span class="_">-d</span></span><br><span class="line">ro.product.board=A3800<span class="_">-d</span></span><br><span class="line">ro.product.manufacturer=LENOVO</span><br><span class="line">ro.build.product=A3800<span class="_">-d</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="2-2-修改语言与时区"><a href="#2-2-修改语言与时区" class="headerlink" title="2.2 修改语言与时区"></a>2.2 修改语言与时区</h2><p>在您的build.prop找到以下字段，它们会在比较靠前的位置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ro.product.locale.language=</span><br><span class="line">ro.product.locale.region=</span><br></pre></td></tr></table></figure></p>
+<p>按下面所展示的内容进行修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ro.product.locale.language=语言</span><br><span class="line">ro.product.locale.region=地区</span><br></pre></td></tr></table></figure></p>
+<p>就像这样<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ro.product.locale.language=zh</span><br><span class="line">ro.product.locale.region=CN</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-3-修改ROM的DPI"><a href="#2-3-修改ROM的DPI" class="headerlink" title="2.3 修改ROM的DPI"></a>2.3 修改ROM的DPI</h2><p>注：如果找不到决定DPI的字段，您还有以下几种选择<br>         1.手动将决定DPI的字段加入到build.prop中<br>         2.跳过此步骤</p>
+<p>在您的build.prop找到以下字段，它们所处的位置并不确定<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ro.sf.lcd_density=</span><br></pre></td></tr></table></figure></p>
+<p>按下面所展示的内容进行修改<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ro.sf.lcd_density=和您的设备的屏幕分辨率相对应的DPI，它是一个整数</span><br></pre></td></tr></table></figure></p>
+<p>就像这样<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ro.sf.lcd_density=240</span><br></pre></td></tr></table></figure></p>
+<h3 id="附-各种常见分辨率所对应的DPI"><a href="#附-各种常见分辨率所对应的DPI" class="headerlink" title="附:各种常见分辨率所对应的DPI"></a>附:各种常见分辨率所对应的DPI</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">LDPI ( 240x320 / QVGA )＝120</span><br><span class="line">MDPI ( 320x480 / HVGA )＝160</span><br><span class="line">HDPI ( 480x800 / WVGA )＝240</span><br><span class="line">XHDPI ( 1280x720 / WVGA )＝320</span><br><span class="line">XXHDPI ( 1920x1080 / WVGA )＝480</span><br></pre></td></tr></table></figure>
+<h1 id="第三章-修改刷机脚本中的内容"><a href="#第三章-修改刷机脚本中的内容" class="headerlink" title="第三章:修改刷机脚本中的内容"></a>第三章:修改刷机脚本中的内容</h1><p>脚本文件路径<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/META-INF/google/android/updater-script</span><br></pre></td></tr></table></figure></p>
+<p>请保持update-script文件的编码为UTF-8</p>
+<h2 id="3-1-去掉机型验证，如果脚本中不存在机型验证的内容就跳过此步骤"><a href="#3-1-去掉机型验证，如果脚本中不存在机型验证的内容就跳过此步骤" class="headerlink" title="3.1 去掉机型验证，如果脚本中不存在机型验证的内容就跳过此步骤"></a>3.1 去掉机型验证，如果脚本中不存在机型验证的内容就跳过此步骤</h2><p>将updater-script中类似于<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">assert(getprop(<span class="string">"ro.product.device"</span>) == <span class="string">"xxx"</span> ||</span><br><span class="line">   getprop(<span class="string">"ro.build.product"</span>) == <span class="string">"xxx"</span> || getprop(<span class="string">"ro.build.product"</span>) == <span class="string">"xxx"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>的内容去掉即可</p>
+<p>3.2）修改和分区有关的内容</p>
+<p>将updater-script中带有mount字样的语句替换为官方updater-script中带有mount的语句</p>
+<p>就像这样</p>
+<p>这是目标ROM中相关的内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mount(<span class="string">"ext4"</span>, <span class="string">"EMMC"</span>, <span class="string">"/dev/block/mmcblk0p3"</span>, <span class="string">"/system"</span>);</span><br><span class="line">mount(<span class="string">"ext4"</span>, <span class="string">"EMMC"</span>, <span class="string">"/dev/block/mmcblk0p7"</span>, <span class="string">"/data"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>这是官方ROM中相关的内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mount(<span class="string">"ext4"</span>, <span class="string">"EMMC"</span>, <span class="string">"/dev/block/mmcblk0p6"</span>, <span class="string">"/system"</span>);</span><br><span class="line">mount(<span class="string">"ext4"</span>, <span class="string">"EMMC"</span>, <span class="string">"/dev/block/mmcblk0p6"</span>, <span class="string">"/data"</span>);</span><br></pre></td></tr></table></figure></p>
+<p>差别很明显，但是不要用我提供的内容进行替换</p>
+<p>3.3）在刷机过程中显示一些信息<br>这一步骤是无关紧要的，可忽略</p>
+<p>在你认为合适的地方加入一些<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ui_print(<span class="string">" "</span>);</span><br></pre></td></tr></table></figure></p>
+<p>并在引号内加入你想要展示的信息</p>
+<p>就像这样<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ui_print(<span class="string">"本ROM制作者：装机狂魔 "</span>);</span><br><span class="line">ui_print(<span class="string">"发布日期：2017-08-07 "</span>);</span><br></pre></td></tr></table></figure></p>
+<p>3.4）判断并解决一些刷机脚本的错误<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">status 1 :错误的原因是传入的参加少于4个。导致错误的地方是install.c::try_update_binary() ，解决方案是换一个Recovery</span><br><span class="line">status 2 :错误的原因是传入的参加中的第二个参加，RECOVERY_API_VERSION,错误，不是 <span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>，这个要去修改源代码中的Android.mk，所以建议换一个 Recovery</span><br><span class="line">status 3 : 刷机包本身有问题，无法被打开, 解决方案，去换一个好的刷机包，或者是重新下载刷机包。</span><br><span class="line">status 4 :无法在刷机包中找到刷机脚本，updater-script ，解决方案，对刷机包重新打包往里面加入updater-script.</span><br><span class="line">status 5 :读取刷机脚本updater-script错误 ,解决方案：重写刷机脚本</span><br><span class="line">status 6 :处理刷机脚本的时候出错 ， 解决方案，重写刷机脚本</span><br><span class="line">status 7 :分析刷机脚本的时候出错了。解决方案，重写刷机脚本，改编码为utf8-no-bom</span><br></pre></td></tr></table></figure></p>
+<h1 id="第四章-修复一些BUG"><a href="#第四章-修复一些BUG" class="headerlink" title="第四章:修复一些BUG"></a>第四章:修复一些BUG</h1><h2 id="4-1-通讯录fc"><a href="#4-1-通讯录fc" class="headerlink" title="4.1 通讯录fc"></a>4.1 通讯录fc</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">这个只要替换</span><br><span class="line">libsqlite.so</span><br><span class="line">libsqlite_jni.so</span><br><span class="line">这两个文件到ROM即可</span><br></pre></td></tr></table></figure>
+<h2 id="4-2-卡第一屏"><a href="#4-2-卡第一屏" class="headerlink" title="4.2 卡第一屏"></a>4.2 卡第一屏</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">这个其实没什么</span><br><span class="line">替换</span><br><span class="line">libandroid_runtime.so</span><br><span class="line">即可</span><br><span class="line"></span><br><span class="line">注：卡第一屏也可能是Boot出现了问题，可以通过Logcat确定</span><br></pre></td></tr></table></figure>
+<h2 id="4-3-照相机拍不了照或者拍照卡死或重启"><a href="#4-3-照相机拍不了照或者拍照卡死或重启" class="headerlink" title="4.3 照相机拍不了照或者拍照卡死或重启"></a>4.3 照相机拍不了照或者拍照卡死或重启</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">同样是替换</span><br><span class="line">libandroid_runtime.so</span><br><span class="line">即可</span><br></pre></td></tr></table></figure>
+<h2 id="4-4-通话时对方听不到我方声音"><a href="#4-4-通话时对方听不到我方声音" class="headerlink" title="4.4 通话时对方听不到我方声音"></a>4.4 通话时对方听不到我方声音</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">反编译phone.apk</span><br><span class="line">找到</span><br><span class="line">res\values\bools.xml</span><br><span class="line">文件</span><br><span class="line">把</span><br><span class="line">&lt;bool name=<span class="string">"send_mic_mute_to_AudioManager"</span>&gt;<span class="literal">true</span>&lt;/bool&gt;</span><br><span class="line">语句中的<span class="literal">true</span>改成<span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-5-手机要求激活"><a href="#4-5-手机要求激活" class="headerlink" title="4.5 手机要求激活"></a>4.5 手机要求激活</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">--桌面上按菜单键-&gt;设置-&gt;无线和网络-&gt;移动网络-&gt;CDMA订阅-&gt;RUIM/SIM</span><br><span class="line">--长按关机键-&gt;启动飞行模式</span><br><span class="line">--长按关机键-&gt;关闭飞行模式</span><br><span class="line">--如有必要重启一次手机</span><br></pre></td></tr></table></figure>
+<h2 id="4-6-手机出现漫游标志"><a href="#4-6-手机出现漫游标志" class="headerlink" title="4.6 手机出现漫游标志"></a>4.6 手机出现漫游标志</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">--设置-&gt;无线和网络-&gt;移动网络-&gt;系统选择-&gt;仅本网</span><br><span class="line">--如有必要重复手机要求激活的步骤</span><br></pre></td></tr></table></figure>
+<h2 id="4-7-不显示开机动画"><a href="#4-7-不显示开机动画" class="headerlink" title="4.7 不显示开机动画"></a>4.7 不显示开机动画</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用官方ROM的/system/bin/bootanimation文件替换到ROM里</span><br></pre></td></tr></table></figure>
+<h2 id="4-8-彩信不可用"><a href="#4-8-彩信不可用" class="headerlink" title="4.8 彩信不可用"></a>4.8 彩信不可用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在MMSC里面写：http：//mmsc.vent.mobi </span><br><span class="line">彩信代理写：10.0.0.200 </span><br><span class="line">彩信端口选：80</span><br><span class="line">这就为ctnet设置了彩信代理，就可以使选择ctnet联网方式照常接收彩信。</span><br></pre></td></tr></table></figure>
+<h2 id="4-9-通话声音或者音乐无声音等BUG"><a href="#4-9-通话声音或者音乐无声音等BUG" class="headerlink" title="4.9 通话声音或者音乐无声音等BUG"></a>4.9 通话声音或者音乐无声音等BUG</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">首先替换bin 下 </span><br><span class="line">audioloop    应该是音频相关的</span><br><span class="line">stagefright  应该是播放声音相关的   </span><br><span class="line">mediaserver  媒体服务</span><br><span class="line">然后是lib</span><br><span class="line"></span><br><span class="line">audio开头全部替换  音频驱动</span><br><span class="line">hw/下  audio开头的全部替换  这里面应该是话筒 啊！！扬声器这些的驱动</span><br><span class="line">libstagefright  开头的全部替换  播放声音的驱动</span><br><span class="line">libmedia  开头的全部替换  媒体相关的驱动  .</span><br></pre></td></tr></table></figure>
+<h2 id="4-10-移植成功触屏无法使用"><a href="#4-10-移植成功触屏无法使用" class="headerlink" title="4.10 移植成功触屏无法使用"></a>4.10 移植成功触屏无法使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">替换system/sps文件夹（整个替换）</span><br></pre></td></tr></table></figure>
+<p>4.11）照相机倒置，白屏<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">system/etc/media_profiles.xml</span><br><span class="line"></span><br><span class="line">打开：media_profiles.xml </span><br><span class="line"></span><br><span class="line">修改里面的代码</span><br><span class="line">&lt;EncoderProfile quality=<span class="string">"high"</span> fileFormat=<span class="string">"mp4"</span> duration=<span class="string">"60"</span>&gt;</span><br><span class="line">&lt;Video codec=<span class="string">"m4v"</span></span><br><span class="line">bitRate=<span class="string">"3078000"</span></span><br><span class="line">width=<span class="string">"640"</span></span><br><span class="line">height=<span class="string">"480"</span></span><br><span class="line">frameRate=<span class="string">"30"</span> /&gt;</span><br><span class="line"></span><br><span class="line">为:</span><br><span class="line"></span><br><span class="line">&lt;EncoderProfile quality=<span class="string">"high"</span> fileFormat=<span class="string">"mp4"</span> duration=<span class="string">"60"</span>&gt;</span><br><span class="line">&lt;Video codec=<span class="string">"m4v"</span></span><br><span class="line">bitRate=<span class="string">"3078000"</span></span><br><span class="line">width=<span class="string">"320"</span></span><br><span class="line">height=<span class="string">"240"</span></span><br><span class="line">frameRate=<span class="string">"30"</span> /&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">修改代码：</span><br><span class="line"></span><br><span class="line">&lt;VideoEncoderCap name=<span class="string">"m4v"</span> enabled=<span class="string">"true"</span></span><br><span class="line">minBitRate=<span class="string">"96100"</span> maxBitRate=<span class="string">"2500000"</span></span><br><span class="line">minFrameWidth=<span class="string">"176"</span> maxFrameWidth=<span class="string">"640"</span></span><br><span class="line">minFrameHeight=<span class="string">"144"</span> maxFrameHeight=<span class="string">"480"</span></span><br><span class="line">minFrameRate=<span class="string">"1"</span> maxFrameRate=<span class="string">"30"</span> /&gt;</span><br><span class="line"></span><br><span class="line">为：</span><br><span class="line"></span><br><span class="line">&lt;VideoEncoderCap name=<span class="string">"m4v"</span> enabled=<span class="string">"true"</span></span><br><span class="line">minBitRate=<span class="string">"96100"</span> maxBitRate=<span class="string">"2500000"</span></span><br><span class="line">minFrameWidth=<span class="string">"176"</span> maxFrameWidth=<span class="string">"320"</span></span><br><span class="line">minFrameHeight=<span class="string">"144"</span> maxFrameHeight=<span class="string">"240"</span></span><br><span class="line">minFrameRate=<span class="string">"1"</span> maxFrameRate=<span class="string">"30"</span> /&gt;</span><br><span class="line">修改后保存即可</span><br></pre></td></tr></table></figure></p>
+<h1 id="尾声…"><a href="#尾声…" class="headerlink" title="尾声…"></a>尾声…</h1><p>指南中部分内容来自互联网<br>现在您已经为您所钟爱的设备成功地移植了一个ROM<br>这是关于移植ROM的基础支持……<br>我已经覆盖了所有的常用的基本指南</p>
+<p>向开源致敬！</p>
+<p>官方QQ群: <a href="https://jq.qq.com/?_wv=1027&amp;k=5E7ZbhG" target="_blank" rel="noopener">点击加入</a><br>官方贴吧：<a href="https://tieba.baidu.com/f?kw=easydroid&amp;fr=index&amp;fp=0&amp;ie=utf-8" target="_blank" rel="noopener">点击访问（求关注）</a></p>
+
+                
+
+
+<p class="pink-link-context">
+    <a href="/2018/03/31/hello-world/" rel="next" title="Hello World">
+    下一篇：Hello World
+  </a>
+</p>
+
+
+            </div>
+			
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+</div>
+
+        <div class="fixed-action-btn float-sitemap">
+    <a class="btn-floating btn-large pink">
+      <i class="fa fa-caret-square-o-up"></i>
+    </a>
+    <ul>
+      <li><a class="btn-return-top btn-floating waves-effect green" title="回到顶部"><i class="fa fa-arrow-circle-o-up"></i></a></li>
+      <li><a class="btn-floating waves-effect button-collapse yellow darken-1"  data-activates="main-menu" title="菜单"><i class="fa fa-navicon"></i></a></li>
+    </ul>
+  </div>
+
+    </main>
+    <footer class="page-footer indigo darken-1">
+    
+
+    <div class="footer-copyright pink-link-context">
+        <div class="container">
+            © 2016-2018 Easydrid Studio, All rights reserved.
+            <p class="right" style="margin-top: 0;">本博客由 <a href="https://hexo.io">Hexo</a> 强力驱动 | 主题 <a href="https://github.com/raytaylorlin/hexo-theme-raytaylorism">raytaylorism</a></p>
+        </div>
+    </div>
+</footer>
+
+
+    <noscript>
+    <div class="noscript">
+        <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+    </div>
+</noscript>
+<div class="noscript">
+    <p class="center-align">当前网速较慢或者你使用的浏览器不支持博客特定功能，请尝试刷新或换用Chrome、Firefox等现代浏览器</p>
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/materialize.min.js"></script>
+
+<script>
+    (function($) {
+        $(document).ready(function() {
+            // 隐藏禁用javascript（针对微信内置浏览器）的提示
+            $('.noscript').hide();
+
+            // 图片缩放效果
+            var $imgs = $('img').not('.slider-image').not('.avatar-image').not('.carousel-image').not('.card-cover-image').not('.qrcode');
+
+            // 给图片加上点击放大效果（materialbox插件）
+            $imgs.addClass('materialboxed').each(function(i, el) {
+                $(this).attr('data-caption', $(this).attr('alt') || ' ');
+            }).materialbox();
+
+            // 优化表格的显示
+            $('table').each(function() {
+                var $table = $(this);
+                // 除去多行代码的情况
+                if ($table.find('pre').length == 0) {
+                    $table.addClass('responsive-table striped bordered');
+                }
+            });
+
+            // 首页幻灯片
+            $('.slider').slider({indicators: true, full_width: true, interval: 8000});
+
+            $(".button-collapse").sideNav();
+            $(".category-menu").sideNav();
+
+            // 针对gallery post
+            $('.carousel').carousel({full_width: true});
+            $('.carousel-control.prev').click(function() {
+                $('.carousel').carousel('prev');
+            });
+            $('.carousel-control.next').click(function() {
+                $('.carousel').carousel('next');
+            });
+
+            // 文章目录
+            $('article').not('.simple-article').find('h1').add('h2').add('h3').add('h4').add('h5').add('h6').scrollSpy();
+
+            // 目录随屏幕滚动（防止目录过长越过footer）
+            var $toc = $('.toc');
+            var scrollTargetTop = 0;
+            $(window).scroll(function() {
+                var $activeLink = $toc.find('a.active.section');
+                if ($(window).scrollTop() < 100) {
+                    scrollTargetTop = 0;
+                } else {
+                    if ($activeLink[0]) {
+                        scrollTargetTop = $activeLink.offset().top - $toc.offset().top;
+                    }
+                }
+                $toc.css('top', '-' + scrollTargetTop + 'px');
+            });
+
+            // 修正文章目录的left-border颜色
+            var color = $('.table-of-contents-text').css('color');
+            $('.table-of-contents-link').css('border-left-color', color);
+
+            // 针对移动端做的优化：FAB按钮点击一下收回
+            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+                $('.fixed-action-btn').addClass('click-to-toggle');
+            }
+            // 回到顶部
+            $('.btn-return-top').click(function() {
+                $('body, html').animate({
+                    scrollTop: 0
+                }, 500);
+            });
+
+            // 重置读书页面的Tab标签页的颜色
+            $('li.tab a').hover(function() {
+                $(this).toggleClass('text-lighten-4');
+            });
+            $('.indicator').addClass('pink lighten-2');
+
+            
+
+            // 搜索功能
+            $('.modal-trigger').leanModal({
+                // 打开搜索框时自动聚焦
+                ready: function() {
+                    if ($('#search').is(":visible")) {
+                        $('#search-input').focus();
+                    }
+                }
+            });
+            var searchXml = "";
+            if (searchXml.length == 0) {
+             	searchXml = "search.xml";
+            }
+            var searchPath = "/" + searchXml;
+            initSearch(searchPath, 'search-input', 'search-result');
+        });
+
+        // 初始化搜索与匹配函数
+        var initSearch = function(path, search_id, content_id) {
+            'use strict';
+            $.ajax({
+                url: path,
+                dataType: "xml",
+                success: function(xmlResponse) {
+                    // get the contents from search data
+                    var datas = $("entry", xmlResponse).map(function() {
+                        return {
+                            title: $("title", this).text(),
+                            content: $("content", this).text(),
+                            url: $("url", this).text()
+                        };
+                    }).get();
+                    var $input = document.getElementById(search_id);
+                    var $resultContent = document.getElementById(content_id);
+                    $input.addEventListener('input', function() {
+                        var str = '<ul class=\"search-result-list\">';
+                        var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                        $resultContent.innerHTML = "";
+                        if (this.value.trim().length <= 0) {
+                            return;
+                        }
+                        // perform local searching
+                        datas.forEach(function(data) {
+                            var isMatch = true;
+                            var content_index = [];
+                            var data_title = data.title.trim().toLowerCase();
+                            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                            var data_url = data.url;
+                            var index_title = -1;
+                            var index_content = -1;
+                            var first_occur = -1;
+                            // only match artiles with not empty titles and contents
+                            if (data_title != '' && data_content != '') {
+                                keywords.forEach(function(keyword, i) {
+                                    index_title = data_title.indexOf(keyword);
+                                    index_content = data_content.indexOf(keyword);
+                                    if (index_title < 0 && index_content < 0) {
+                                        isMatch = false;
+                                    } else {
+                                        if (index_content < 0) {
+                                            index_content = 0;
+                                        }
+                                        if (i == 0) {
+                                            first_occur = index_content;
+                                        }
+                                    }
+                                });
+                            }
+                            // show search results
+                            if (isMatch) {
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    data_title = data_title.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                });
+
+                                str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                                var content = data.content.trim().replace(/<[^>]+>/g, "");
+                                if (first_occur >= 0) {
+                                    // cut out 100 characters
+                                    var start = first_occur - 20;
+                                    var end = first_occur + 80;
+                                    if (start < 0) {
+                                        start = 0;
+                                    }
+                                    if (start == 0) {
+                                        end = 100;
+                                    }
+                                    if (end > content.length) {
+                                        end = content.length;
+                                    }
+                                    var match_content = content.substring(start, end);
+                                    // highlight all keywords
+                                    keywords.forEach(function(keyword) {
+                                        var regS = new RegExp(keyword, "gi");
+                                        match_content = match_content.replace(regS, "<span class=\"search-keyword pink lighten-2\">" + keyword + "</span>");
+                                    });
+
+                                    str += "<p class=\"search-result\">..." + match_content + "...</p>"
+                                }
+                                str += "</li>";
+                            }
+                        });
+                        str += "</ul>";
+                        $resultContent.innerHTML = str;
+                    });
+                }
+            });
+        }
+    })(jQuery);
+</script>
+
+
+<script src="/js/prettify.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("pre").addClass("prettyprint");
+        prettyPrint();
+    });
+</script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+</body>
+</html>
